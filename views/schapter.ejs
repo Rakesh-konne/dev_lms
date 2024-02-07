@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>
+        <%= chapter.name %>
+    </title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css">
+    
+</head>
+
+<body class="bg-blue-100">
+    <!-- Fixed Navigation Bar -->
+    <nav class="fixed top-0 left-0 right-0 flex items-center justify-between bg-blue-300 p-2 shadow-md">
+        <a href="/scourse/<%= course.id %>" class="flex items-center ml-3 my-2">
+            <img src="https://cdn-icons-png.flaticon.com/512/7518/7518214.png" class="w-12 h-12" alt="view course">
+            <div class="ml-1 bg-green-500 px-3 py-2 rounded text-white hover:bg-green-600 transition duration-300">
+                Go to Course View
+            </div>
+        </a>
+        <h2 class="text-5xl text-color-blue font-semibold mb-4 mt-5 mr-20">
+            <%= chapter.name %>
+        </h2>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="flex items-center ml-10 mr-10 mt-20">
+
+
+        <!-- Left Part -->
+        <div class=" w-full items-center bg-white mt-50 mr-10 ml-10 rounded-md shadow-md">
+            <!-- Content for the left part goes here -->
+
+            <div class="my-10 p-15">
+                <% var completedPagesList=[]; %>
+                    <% for (var i=0; i < completedPages.length; i++) { %>
+
+                        <% completedPagesList.push(completedPages[i].pageName) %>
+                            <% } %>
+
+                                <ul>
+                                    <% for( var i=0; i < pages.length; i++) { %>
+                                        <div
+                                            class="my-2 p-4 w-fit flex items-center mx-5 bg-blue-100 rounded-md shadow-md">
+                                            <h2 class="text-2xl flex-grow font-semibold mb-4">Page <%= i+1 %> : <%=
+                                                        pages[i].name %>
+                                            </h2>
+
+                                            <div class=" flex ml-auto items-center justify-right">
+                                                <form action="/spage/<%= pages[i].id %>" method="get">
+                                                    <button
+                                                        class="bg-blue-400 text-white px-4 py-2  hover:bg-blue-600 transition duration-300  rounded">Start
+                                                        Reading...</button>
+                                                </form>
+                                                <div
+                                                    class="w-30 h-10 rounded px-4 py-2 text-white ml-4 bg-green-400   mr-3">
+                                                    <%= completedPagesList.includes(pages[i].name) ? 'Completed'
+                                                        : 'Not Completed' %>
+                                                </div>
+
+                                            </div>
+
+                                        </div>
+                                        <% } %>
+                                </ul>
+            </div>
+        </div>
+    </div>
+
+
+</body>
+
+</html>

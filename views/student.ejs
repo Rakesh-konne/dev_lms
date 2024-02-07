@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Homepage</title>
+    <!-- Include Tailwind CSS CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+
+<body class="bg-blue-100">
+    <%- include('header.ejs') %>
+        <nav>
+            <h1 class="text-2xl font-semibold ml-10 px-5 mt-6 ">Welcome, <%= studentName %>!</h1>
+            <div class="flex justify-end items-center mr-10">
+                <img src="https://cdn-icons-png.flaticon.com/512/9257/9257174.png" alt="Student Icon"
+                    class="w-8 h-8  rounded mr-2">
+                <div>
+                    <p class="font-semibold text-gray-800">
+                        <%= studentName %>
+                    </p>
+                    <p class="text-gray-600">Student ID: STU<%=studentId %>
+                    </p>
+                </div>
+            </div>
+
+
+        </nav>
+
+
+
+        <!-- Student Homepage Container -->
+        <div class="container mx-auto p-8">
+
+            <!-- Enrolled Courses Container -->
+            <div class="mb-8">
+                <h2 class="text-xl font-semibold mb-4">Enrolled Courses</h2>
+
+
+                <% for( var i=0; i < enrolledCourses.length; i++) { %>
+                    <!-- List of Enrolled Courses -->
+
+                    <div class="bg-white p-4 m-4 border-blue-400 rounded-md w-4/5">
+                        <h3 class="text-lg font-semibold mb-2">
+                            <%= i+1 %> : <%= enrolledCourses[i].name %>
+                        </h3>
+
+                        <div class="flex items-center justify-middle">
+                            <a href="/scourse/<%=enrolledCourses[i].id%>" class="block text-center">
+                                <div
+                                    class="w-36 h-12 bg-blue-500 text-white rounded-md  m-3 cursor-pointer hover:bg-blue-600 transition duration-300">
+                                    <img src="https://cdn-icons-png.flaticon.com/512/5261/5261565.png"
+                                        class=" w-35 h-12 mx-10 my-1 flex items-center justify-middle"
+                                        alt="Start course">
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                    <% } %>
+
+
+
+                        <!-- Available Courses Container -->
+                        <div>
+                            <h2 class="text-xl font-semibold mb-4">Available Courses</h2>
+                            <!-- List of Available Courses -->
+                            <% for( var i=0; i < availcourses.length; i++) { %>
+
+                                <div class="bg-white p-4 m-8 rounded-md w-3/4">
+                                    <h3 class="text-lg font-semibold mb-2">
+                                        <%= availcourses[i].name%>
+                                    </h3>
+                                    <p>
+                                        <%= availcourses[i].description %>
+                                    </p>
+                                    <div class="flex items-center justify-content mx-20">
+                                        <!-- Enroll Box -->
+                                        <a href="/enrollCourse/<%=availcourses[i].id %>" class="block text-center">
+                                            <div
+                                                class="w-40 h-20 flex items-center  bg-blue-500 text-white rounded-md px-2 py-3 m-3 cursor-pointer hover:bg-blue-600 transition duration-300">
+                                                <img src="https://cdn-icons-png.flaticon.com/512/3135/3135763.png"
+                                                    class=" w-35 h-12 mx-4 my-1 flex items-center justify-middle"
+                                                    alt="enroll course">
+                                                <h3 class="text-sm font-semibold mb-2">Enroll Course</h3>
+
+                                            </div>
+                                        </a>
+                                        <!-- View Box -->
+
+                                        <a href="/viewCourse/<%=availcourses[i].id %>" class="block text-center">
+                                            <div
+                                                class="w-40 h-20 flex items-center  bg-blue-500 text-white rounded-md px-2 py-3 m-3 cursor-pointer hover:bg-blue-600 transition duration-300">
+                                                <img src="https://cdn-icons-png.flaticon.com/512/1162/1162251.png"
+                                                    class=" w-35 h-12 mx-4 my-1 flex items-center justify-middle"
+                                                    alt="view course">
+                                                <h3 class="text-sm font-semibold mb-2">View Course</h3>
+
+                                            </div>
+
+                                        </a>
+
+                                    </div>
+
+
+                                </div>
+                                <% } %>
+                        </div>
+                        <%- include('footer.ejs') %>
+</body>
+
+</html>
